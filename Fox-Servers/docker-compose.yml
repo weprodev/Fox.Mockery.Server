@@ -1,0 +1,24 @@
+version: "3.9"
+
+services:
+  fox-server1:
+    build:
+      context: ./images
+      dockerfile: Dockerfile
+    container_name: fox-server1
+    working_dir: /var/www/html/Fox.Mockery.Framework
+    stdin_open: true
+    tty: true
+    command: 'php artisan serve --host=0.0.0.0'
+    volumes:
+      - ../mocks:/var/www/html/Fox.Mockery.Framework/mocks
+    ports:
+      - 8030:8000
+    networks:
+      - fox-server
+
+networks:
+  fox-server:
+    name: fox-server
+  data:
+    name: data
