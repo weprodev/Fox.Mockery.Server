@@ -6,3 +6,7 @@ help:
 .PHONY: docker
 docker: ## Re-Creating and Running Docker Containers For Fox Servers
 	cd Fox-Servers && docker-compose up -d --force-recreate && docker-compose build --force-rm
+
+.PHONY: openapi
+openapi: ## generate Open API Specification
+	docker exec -it fox-server php artisan fox:openapi

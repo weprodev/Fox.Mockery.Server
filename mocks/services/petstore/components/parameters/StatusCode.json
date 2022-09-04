@@ -1,0 +1,23 @@
+{
+	"name": "X-STATUS-CODE",
+	"in": "header",
+	"description": "With this parameter, we can handle the response message, according to the status code which we want.",
+	"required": false,
+	"style": "simple",
+	"allowEmptyValue": false,
+	"schema": {
+		"type": "integer",
+		"default": 200,
+		"enum": [
+			200,
+			201,
+			204,
+			400,
+			401,
+			404,
+			409,
+			500,
+			503
+		]
+	}
+}

@@ -1,0 +1,12 @@
+{
+	"name": "X-ENVELOPE-RESPONSE",
+	"in": "header",
+	"description": "With this parameter, we can ENVELOPE the response message in a specific key.",
+	"required": false,
+	"style": "simple",
+	"allowEmptyValue": false,
+	"schema": {
+		"type": "string",
+		"default": "data"
+	}
+}

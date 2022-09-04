@@ -1,0 +1,27 @@
+[
+	{
+		"name": "Customers",
+		"description": "Everything about Customers",
+		"externalDocs": {
+			"description": "Find out more",
+			"url": "http://example.com"
+		}
+	},
+	{
+		"name": "Beers",
+		"description": "Everything about Beers",
+		"externalDocs": {
+			"description": "Find out more",
+			"url": "http://example.com"
+		}
+	},
+	{
+		"name": "Order Service",
+		"description": "Everything about Order Service",
+		"externalDocs": {
+			"description": "Find out more",
+			"url": "http://example.com"
+		}
+	}
+]
+

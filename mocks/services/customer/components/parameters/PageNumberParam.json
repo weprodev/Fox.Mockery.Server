@@ -1,0 +1,13 @@
+{
+	"name": "pageNumber",
+	"in": "query",
+	"description": "Page Number",
+	"required": false,
+	"style": "form",
+	"explode": true,
+	"schema": {
+		"type": "integer",
+		"format": "int32",
+		"default": 1
+	}
+}

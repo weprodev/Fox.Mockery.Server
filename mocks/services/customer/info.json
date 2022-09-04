@@ -1,0 +1,15 @@
+{
+	"title": "OpenAPI Course",
+	"description": "Specification for OpenAPI Course",
+	"termsOfService": "http://example.com/terms/",
+	"contact": {
+		"name": "John Thompson",
+		"url": "https:springframework.guru",
+		"email": "john@springframework.guru"
+	},
+	"license": {
+		"name": "Apache 2.0",
+		"url": "https://www.apache.org/licenses/LICENSE-2.0.html"
+	},
+	"version": "1.0"
+}

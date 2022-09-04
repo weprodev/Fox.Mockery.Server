@@ -1,0 +1,11 @@
+[
+    {
+        "name": "pet",
+        "description": "Everything about your pets",
+        "externalDocs": {
+            "description": "Find out more",
+            "url": "http://example.com"
+        }
+    }
+]
+

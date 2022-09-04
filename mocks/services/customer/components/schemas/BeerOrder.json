@@ -1,0 +1,33 @@
+{
+	"type": "object",
+	"required": [
+		"customerId"
+	],
+	"properties": {
+		"id": {
+			"type": "string",
+			"format": "uuid",
+			"nullable": true,
+			"readOnly": true
+		},
+		"customerId": {
+			"type": "string",
+			"format": "uuid"
+		},
+		"customerRef": {
+			"type": "string",
+			"nullable": true
+		},
+		"beerOrderLines": {
+			"type": "array",
+			"items": {
+				"$ref": "#/components/schemas/BeerOrderLine"
+			}
+		},
+		"orderStatusCallbackUrl": {
+			"type": "string",
+			"format": "uri"
+		}
+	}
+}
+

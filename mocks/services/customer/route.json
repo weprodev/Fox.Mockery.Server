@@ -1,0 +1,1113 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "title": "OpenAPI Course",
+        "description": "Specification for OpenAPI Course",
+        "termsOfService": "http:\/\/example.com\/terms\/",
+        "contact": {
+            "name": "John Thompson",
+            "url": "https:springframework.guru",
+            "email": "john@springframework.guru"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "https:\/\/www.apache.org\/licenses\/LICENSE-2.0.html"
+        },
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "https:\/\/dev.example.com",
+            "description": "Development Server"
+        },
+        {
+            "url": "https:\/\/qa.example.com",
+            "description": "QA Server"
+        },
+        {
+            "url": "https:\/\/prod.example.com",
+            "description": "Production Server"
+        }
+    ],
+    "paths": {
+        "\/v1\/beers": {
+            "get": {
+                "summary": "List Beers",
+                "description": "List all beers in system.",
+                "operationId": "listBeersV1",
+                "tags": [
+                    "Beers"
+                ],
+                "parameters": [
+                    {
+                        "name": "pageNumber",
+                        "in": "query",
+                        "description": "Page Number",
+                        "required": false,
+                        "style": "form",
+                        "explode": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32",
+                            "default": 1
+                        }
+                    },
+                    {
+                        "name": "pageSize",
+                        "in": "query",
+                        "description": "Page Size",
+                        "required": false,
+                        "style": "form",
+                        "explode": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32",
+                            "default": 25
+                        }
+                    },
+                    {
+                        "$ref": "#\/components\/parameters\/ResponseType"
+                    },
+                    {
+                        "$ref": "#\/components\/parameters\/EnvelopeResponse"
+                    },
+                    {
+                        "$ref": "#\/components\/parameters\/StatusCode"
+                    },
+                    {
+                        "$ref": "#\/components\/parameters\/JsonContentType"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List all beers in system.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/BeerPagedList"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "No Beers Found"
+                    }
+                }
+            },
+            "post": {
+                "summary": "New Beer",
+                "description": "Create a new Beer Object",
+                "tags": [
+                    "Beers"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#\/components\/parameters\/ResponseType"
+                    },
+                    {
+                        "$ref": "#\/components\/parameters\/EnvelopeResponse"
+                    },
+                    {
+                        "$ref": "#\/components\/parameters\/StatusCode"
+                    },
+                    {
+                        "$ref": "#\/components\/parameters\/JsonContentType"
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application\/json": {
+                            "schema": {
+                                "$ref": "#\/components\/schemas\/Beer"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Beer Created",
+                        "headers": {
+                            "Location": {
+                                "description": "Beer Object created",
+                                "style": "simple",
+                                "explode": false,
+                                "schema": {
+                                    "type": "string",
+                                    "format": "uri",
+                                    "example": "http:\/\/example.com\/v1\/beers\/assignedIdValue"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "409": {
+                        "description": "Conflict"
+                    }
+                }
+            }
+        },
+        "\/v1\/beers\/{beerId}": {
+            "get": {
+                "summary": "Get Beer by ID",
+                "description": "Get a single beer by its ID value.",
+                "operationId": "getBeerByIdV1",
+                "tags": [
+                    "Beers"
+                ],
+                "parameters": [
+                    {
+                        "name": "beerId",
+                        "in": "path",
+                        "description": "Beer Id",
+                        "required": true,
+                        "style": "simple",
+                        "explode": false,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    },
+                    {
+                        "$ref": "#\/components\/parameters\/ResponseType"
+                    },
+                    {
+                        "$ref": "#\/components\/parameters\/EnvelopeResponse"
+                    },
+                    {
+                        "$ref": "#\/components\/parameters\/StatusCode"
+                    },
+                    {
+                        "$ref": "#\/components\/parameters\/JsonContentType"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Found Beer by Id",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/Beer"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "NOT Found"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Update Beer by ID",
+                "description": "Update a beer by its ID value.",
+                "operationId": "updateBeerByIdV1",
+                "tags": [
+                    "Beers"
+                ],
+                "parameters": [
+                    {
+                        "name": "beerId",
+                        "in": "path",
+                        "description": "Beer Id",
+                        "required": true,
+                        "style": "simple",
+                        "explode": false,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    },
+                    {
+                        "$ref": "#\/components\/parameters\/ResponseType"
+                    },
+                    {
+                        "$ref": "#\/components\/parameters\/EnvelopeResponse"
+                    },
+                    {
+                        "$ref": "#\/components\/parameters\/StatusCode"
+                    },
+                    {
+                        "$ref": "#\/components\/parameters\/JsonContentType"
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application\/json": {
+                            "schema": {
+                                "$ref": "#\/components\/schemas\/Beer"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "204": {
+                        "description": "Beer Updated"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "409": {
+                        "description": "Conflict"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Beers"
+                ],
+                "summary": "Delete Beer by Id",
+                "description": "Delete a beer resource by its ID value.",
+                "operationId": "deleteBeerV1",
+                "parameters": [
+                    {
+                        "name": "beerId",
+                        "in": "path",
+                        "description": "Beer Id",
+                        "required": true,
+                        "style": "simple",
+                        "explode": false,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    },
+                    {
+                        "$ref": "#\/components\/parameters\/ResponseType"
+                    },
+                    {
+                        "$ref": "#\/components\/parameters\/EnvelopeResponse"
+                    },
+                    {
+                        "$ref": "#\/components\/parameters\/StatusCode"
+                    },
+                    {
+                        "$ref": "#\/components\/parameters\/JsonContentType"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Beer Resource Deleted"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    }
+                }
+            }
+        },
+        "\/v1\/customers": {
+            "get": {
+                "summary": "List Customers",
+                "description": "Get a list of customers in the system",
+                "operationId": "listCustomersV1",
+                "tags": [
+                    "Customers"
+                ],
+                "parameters": [
+                    {
+                        "name": "pageNumber",
+                        "in": "query",
+                        "description": "Page Number",
+                        "required": false,
+                        "style": "form",
+                        "explode": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32",
+                            "default": 1
+                        }
+                    },
+                    {
+                        "name": "pageSize",
+                        "in": "query",
+                        "description": "Page Size",
+                        "required": false,
+                        "style": "form",
+                        "explode": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32",
+                            "default": 25
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of Customers",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/CustomerPagedList"
+                                },
+                                "example": []
+                            }
+                        }
+                    }
+                },
+                "security": []
+            },
+            "post": {
+                "summary": "New Customer",
+                "description": "Create a new customer",
+                "tags": [
+                    "Customers"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application\/json": {
+                            "schema": {
+                                "$ref": "#\/components\/schemas\/Customer"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Customer Created",
+                        "headers": {
+                            "Location": {
+                                "description": "Location of the created customer",
+                                "style": "simple",
+                                "explode": false,
+                                "schema": {
+                                    "type": "string",
+                                    "format": "uri",
+                                    "example": "http:\/\/example.com\/v1\/customers\/assignedIdValue"
+                                }
+                            }
+                        }
+                    },
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application\/json": {
+                                "examples": {
+                                    "zero": {
+                                        "value": {
+                                            "id": 1,
+                                            "name": "",
+                                            "tag": ""
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "409": {
+                        "description": "description: Conflict"
+                    }
+                }
+            }
+        },
+        "\/v1\/customers\/{customerId}": {
+            "get": {
+                "summary": "Get Customer By ID",
+                "description": "Get a single **Customer** by its Id value.",
+                "operationId": "getCustomerByIdV1",
+                "tags": [
+                    "Customers"
+                ],
+                "parameters": [
+                    {
+                        "name": "customerId",
+                        "in": "path",
+                        "description": "Customer Id",
+                        "required": true,
+                        "style": "simple",
+                        "explode": false,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    },
+                    {
+                        "$ref": "#\/components\/parameters\/ResponseType"
+                    },
+                    {
+                        "$ref": "#\/components\/parameters\/EnvelopeResponse"
+                    },
+                    {
+                        "$ref": "#\/components\/parameters\/StatusCode"
+                    },
+                    {
+                        "$ref": "#\/components\/parameters\/JsonContentType"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Found Customer",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/Customer"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found"
+                    }
+                },
+                "security": []
+            },
+            "put": {
+                "summary": "Update Customer",
+                "description": "Update customer by id.",
+                "parameters": [
+                    {
+                        "name": "customerId",
+                        "in": "path",
+                        "description": "Customer Id",
+                        "required": true,
+                        "style": "simple",
+                        "explode": false,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    },
+                    {
+                        "$ref": "#\/components\/parameters\/ResponseType"
+                    },
+                    {
+                        "$ref": "#\/components\/parameters\/EnvelopeResponse"
+                    },
+                    {
+                        "$ref": "#\/components\/parameters\/StatusCode"
+                    },
+                    {
+                        "$ref": "#\/components\/parameters\/JsonContentType"
+                    }
+                ],
+                "tags": [
+                    "Customers"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application\/json": {
+                            "schema": {
+                                "$ref": "#\/components\/schemas\/Customer"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "204": {
+                        "description": "Customer Updated"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "409": {
+                        "description": "Conflict"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Customers"
+                ],
+                "summary": "Delete Customer By ID",
+                "description": "Delete a customer by its Id value.",
+                "operationId": "deleteCustomerV1",
+                "parameters": [
+                    {
+                        "name": "customerId",
+                        "in": "path",
+                        "description": "Customer Id",
+                        "required": true,
+                        "style": "simple",
+                        "explode": false,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    },
+                    {
+                        "$ref": "#\/components\/parameters\/ResponseType"
+                    },
+                    {
+                        "$ref": "#\/components\/parameters\/EnvelopeResponse"
+                    },
+                    {
+                        "$ref": "#\/components\/parameters\/StatusCode"
+                    },
+                    {
+                        "$ref": "#\/components\/parameters\/JsonContentType"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Customer Delete"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    }
+                }
+            }
+        },
+        "\/v1\/customers\/{customerId}\/orders": {
+            "post": {
+                "description": "Place Order",
+                "tags": [
+                    "Order Service"
+                ],
+                "parameters": [
+                    {
+                        "name": "customerId",
+                        "in": "path",
+                        "description": "Customer Id",
+                        "required": true,
+                        "style": "simple",
+                        "explode": false,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    },
+                    {
+                        "$ref": "#\/components\/parameters\/ResponseType"
+                    },
+                    {
+                        "$ref": "#\/components\/parameters\/EnvelopeResponse"
+                    },
+                    {
+                        "$ref": "#\/components\/parameters\/StatusCode"
+                    },
+                    {
+                        "$ref": "#\/components\/parameters\/JsonContentType"
+                    }
+                ],
+                "requestBody": {
+                    "required": false,
+                    "content": {
+                        "application\/json": {
+                            "schema": {
+                                "$ref": "#\/components\/schemas\/BeerOrder"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "headers": {
+                            "Location": {
+                                "description": "Reference to created Order",
+                                "style": "simple",
+                                "explode": false,
+                                "schema": {
+                                    "type": "string",
+                                    "format": "uri"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Reqeust"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "409": {
+                        "description": "Conflict"
+                    }
+                },
+                "callbacks": {
+                    "orderStatusChange": {
+                        "${request.body#\/orderStatusCallbackUrl}": {
+                            "description": "Webhook for order status change notifications",
+                            "post": {
+                                "requestBody": {
+                                    "content": {
+                                        "application\/json": {
+                                            "schema": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "orderId": {
+                                                        "type": "string",
+                                                        "format": "uuid"
+                                                    },
+                                                    "orderStatus": {
+                                                        "type": "string"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "responses": {
+                                    "200": {
+                                        "description": "Okay"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "parameters": {
+            "BeerIdPathParm": {
+                "name": "beerId",
+                "in": "path",
+                "description": "Beer Id",
+                "required": true,
+                "style": "simple",
+                "explode": false,
+                "schema": {
+                    "type": "string",
+                    "format": "uuid"
+                }
+            },
+            "CustomerIdPathParm": {
+                "name": "customerId",
+                "in": "path",
+                "description": "Customer Id",
+                "required": true,
+                "style": "simple",
+                "explode": false,
+                "schema": {
+                    "type": "string",
+                    "format": "uuid"
+                }
+            },
+            "EnvelopeResponse": {
+                "name": "X-ENVELOPE-RESPONSE",
+                "in": "header",
+                "description": "With this parameter, we can ENVELOPE the response message in a specific key.",
+                "required": false,
+                "style": "simple",
+                "allowEmptyValue": false,
+                "schema": {
+                    "type": "string",
+                    "default": "data"
+                }
+            },
+            "JsonContentType": {
+                "name": "Content-Type",
+                "in": "header",
+                "description": "Setting the Content-Type to Json",
+                "required": true,
+                "style": "simple",
+                "allowEmptyValue": false,
+                "schema": {
+                    "type": "string",
+                    "default": "application\/json"
+                }
+            },
+            "PageNumberParam": {
+                "name": "pageNumber",
+                "in": "query",
+                "description": "Page Number",
+                "required": false,
+                "style": "form",
+                "explode": true,
+                "schema": {
+                    "type": "integer",
+                    "format": "int32",
+                    "default": 1
+                }
+            },
+            "PageSizeParam": {
+                "name": "pageSize",
+                "in": "query",
+                "description": "Page Size",
+                "required": false,
+                "style": "form",
+                "explode": true,
+                "schema": {
+                    "type": "integer",
+                    "format": "int32",
+                    "default": 25
+                }
+            },
+            "ResponseType": {
+                "name": "X-RESPONSE-TYPE",
+                "in": "header",
+                "description": "With this parameter, we can handle the response message, according to our requirement.",
+                "required": false,
+                "style": "simple",
+                "allowEmptyValue": false,
+                "schema": {
+                    "type": "string",
+                    "enum": [
+                        "EXAMPLE",
+                        "EXAMPLE_AND_OVERWRITE",
+                        "SCHEMA",
+                        "BODY",
+                        "ALL"
+                    ],
+                    "default": "ALL"
+                }
+            },
+            "StatusCode": {
+                "name": "X-STATUS-CODE",
+                "in": "header",
+                "description": "With this parameter, we can handle the response message, according to the status code which we want.",
+                "required": false,
+                "style": "simple",
+                "allowEmptyValue": false,
+                "schema": {
+                    "type": "integer",
+                    "default": 200,
+                    "enum": [
+                        200,
+                        201,
+                        204,
+                        400,
+                        401,
+                        404,
+                        409,
+                        500,
+                        503
+                    ]
+                }
+            }
+        },
+        "schemas": {
+            "Address": {
+                "type": "object",
+                "required": [
+                    "id",
+                    "name"
+                ],
+                "properties": {
+                    "line1": {
+                        "type": "string",
+                        "example": "123 main"
+                    },
+                    "city": {
+                        "type": "string",
+                        "example": "St Pete"
+                    },
+                    "stateCode": {
+                        "type": "string",
+                        "maxLength": 2,
+                        "minLength": 2,
+                        "description": "2 Letter State Code",
+                        "enum": [
+                            "AL",
+                            "AK",
+                            "AZ",
+                            "AR",
+                            "CA"
+                        ]
+                    },
+                    "zipCode": {
+                        "type": "string",
+                        "example": "33701"
+                    }
+                }
+            },
+            "Beer": {
+                "type": "object",
+                "description": "Beer Object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "format": "uuid",
+                        "readOnly": true
+                    },
+                    "beerName": {
+                        "type": "string"
+                    },
+                    "style": {
+                        "type": "string",
+                        "enum": [
+                            "ALE",
+                            "PALE_ALE",
+                            "IPA",
+                            "WHEAT",
+                            "LAGER"
+                        ]
+                    },
+                    "price": {
+                        "type": "number",
+                        "format": "float"
+                    },
+                    "quantityOnHand": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "brewery": {
+                        "$ref": "#\/components\/schemas\/Brewery"
+                    }
+                }
+            },
+            "BeerList": {
+                "type": "array",
+                "items": {
+                    "$ref": "#\/components\/schemas\/Beer"
+                }
+            },
+            "BeerOrder": {
+                "type": "object",
+                "required": [
+                    "customerId"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "format": "uuid",
+                        "nullable": true,
+                        "readOnly": true
+                    },
+                    "customerId": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "customerRef": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "beerOrderLines": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#\/components\/schemas\/BeerOrderLine"
+                        }
+                    },
+                    "orderStatusCallbackUrl": {
+                        "type": "string",
+                        "format": "uri"
+                    }
+                }
+            },
+            "BeerOrderLine": {
+                "type": "object",
+                "required": [
+                    "orderQuantity",
+                    "upc"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "format": "uuid",
+                        "nullable": true,
+                        "readOnly": true
+                    },
+                    "beerId": {
+                        "type": "string",
+                        "format": "uuid",
+                        "readOnly": true
+                    },
+                    "upc": {
+                        "type": "string"
+                    },
+                    "orderQuantity": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 999
+                    },
+                    "quantityAllocated": {
+                        "type": "integer",
+                        "nullable": true,
+                        "readOnly": true
+                    }
+                }
+            },
+            "BeerPagedList": {
+                "type": "object",
+                "properties": {
+                    "content": {
+                        "$ref": "#\/components\/schemas\/BeerList"
+                    }
+                },
+                "allOf": [
+                    {
+                        "$ref": "#\/components\/schemas\/PagedResponse"
+                    }
+                ]
+            },
+            "Brewery": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "location": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Customer": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "format": "uuid",
+                        "readOnly": true
+                    },
+                    "firstName": {
+                        "type": "string",
+                        "maxLength": 100,
+                        "minLength": 2,
+                        "example": "John"
+                    },
+                    "lastName": {
+                        "type": "string",
+                        "maxLength": 100,
+                        "minLength": 2,
+                        "example": "Thompson"
+                    },
+                    "address": {
+                        "$ref": "#\/components\/schemas\/Address"
+                    }
+                }
+            },
+            "CustomerList": {
+                "type": "array",
+                "description": "List of Customers",
+                "maxItems": 100,
+                "minItems": 1,
+                "items": {
+                    "$ref": "#\/components\/schemas\/Customer"
+                }
+            },
+            "CustomerPagedList": {
+                "type": "object",
+                "properties": {
+                    "content": {
+                        "$ref": "#\/components\/schemas\/CustomerList"
+                    }
+                },
+                "allOf": [
+                    {
+                        "$ref": "#\/components\/schemas\/PagedResponse"
+                    }
+                ]
+            },
+            "PagedResponse": {
+                "type": "object",
+                "properties": {
+                    "pageable": {
+                        "$ref": "#\/components\/schemas\/PagedResponse_pageable"
+                    },
+                    "totalPages": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "last": {
+                        "type": "boolean"
+                    },
+                    "totalElements": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "size": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "number": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "numberOfElements": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "sort": {
+                        "$ref": "#\/components\/schemas\/PagedResponse_pageable_sort"
+                    },
+                    "first": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "PagedResponse_pageable": {
+                "type": "object",
+                "properties": {
+                    "sort": {
+                        "$ref": "#\/components\/schemas\/PagedResponse_pageable_sort"
+                    },
+                    "offset": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "pageNumber": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "pageSize": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "paged": {
+                        "type": "boolean"
+                    },
+                    "unpaged": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "PagedResponse_pageable_sort": {
+                "type": "object",
+                "properties": {
+                    "sorted": {
+                        "type": "boolean"
+                    },
+                    "unsorted": {
+                        "type": "boolean"
+                    }
+                }
+            }
+        },
+        "securitySchemes": {
+            "BasicAuth": {
+                "type": "http",
+                "scheme": "basic"
+            },
+            "JwtAuthToken": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
+            }
+        }
+    },
+    "security": [
+        {
+            "BasicAuth": []
+        },
+        {
+            "JwtAuthToken": []
+        }
+    ],
+    "tags": [
+        {
+            "name": "Customers",
+            "description": "Everything about Customers",
+            "externalDocs": {
+                "description": "Find out more",
+                "url": "http:\/\/example.com"
+            }
+        },
+        {
+            "name": "Beers",
+            "description": "Everything about Beers",
+            "externalDocs": {
+                "description": "Find out more",
+                "url": "http:\/\/example.com"
+            }
+        },
+        {
+            "name": "Order Service",
+            "description": "Everything about Order Service",
+            "externalDocs": {
+                "description": "Find out more",
+                "url": "http:\/\/example.com"
+            }
+        }
+    ]
+}

@@ -1,0 +1,13 @@
+{
+	"name": "pageSize",
+	"in": "query",
+	"description": "Page Size",
+	"required": false,
+	"style": "form",
+	"explode": true,
+	"schema": {
+		"type": "integer",
+		"format": "int32",
+		"default": 25
+	}
+}

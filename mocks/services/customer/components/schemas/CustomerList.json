@@ -1,0 +1,9 @@
+{
+	"type": "array",
+	"description": "List of Customers",
+	"maxItems": 100,
+	"minItems": 1,
+	"items": {
+		"$ref": "#/components/schemas/Customer"
+	}
+}

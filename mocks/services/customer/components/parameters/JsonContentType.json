@@ -1,0 +1,12 @@
+{
+	"name": "Content-Type",
+	"in": "header",
+	"description": "Setting the Content-Type to Json",
+	"required": true,
+	"style": "simple",
+	"allowEmptyValue": false,
+	"schema": {
+		"type": "string",
+		"default": "application/json"
+	}
+}

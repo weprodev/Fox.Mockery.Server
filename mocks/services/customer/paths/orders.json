@@ -1,0 +1,103 @@
+{
+	"/v1/customers/{customerId}/orders": {
+		"post": {
+			"description": "Place Order",
+			"tags": [
+				"Order Service"
+			],
+			"parameters": [
+				{
+					"name": "customerId",
+					"in": "path",
+					"description": "Customer Id",
+					"required": true,
+					"style": "simple",
+					"explode": false,
+					"schema": {
+						"type": "string",
+						"format": "uuid"
+					}
+				},
+				{
+					"$ref": "#/components/parameters/ResponseType"
+				},
+				{
+					"$ref": "#/components/parameters/EnvelopeResponse"
+				},
+				{
+					"$ref": "#/components/parameters/StatusCode"
+				},
+				{
+					"$ref": "#/components/parameters/JsonContentType"
+				}
+			],
+			"requestBody": {
+				"required": false,
+				"content": {
+					"application/json": {
+						"schema": {
+							"$ref": "#/components/schemas/BeerOrder"
+						}
+					}
+				}
+			},
+			"responses": {
+				"201": {
+					"description": "",
+					"headers": {
+						"Location": {
+							"description": "Reference to created Order",
+							"style": "simple",
+							"explode": false,
+							"schema": {
+								"type": "string",
+								"format": "uri"
+							}
+						}
+					}
+				},
+				"400": {
+					"description": "Bad Reqeust"
+				},
+				"404": {
+					"description": "Not Found"
+				},
+				"409": {
+					"description": "Conflict"
+				}
+			},
+			"callbacks": {
+				"orderStatusChange": {
+					"${request.body#/orderStatusCallbackUrl}": {
+						"description": "Webhook for order status change notifications",
+						"post": {
+							"requestBody": {
+								"content": {
+									"application/json": {
+										"schema": {
+											"type": "object",
+											"properties": {
+												"orderId": {
+													"type": "string",
+													"format": "uuid"
+												},
+												"orderStatus": {
+													"type": "string"
+												}
+											}
+										}
+									}
+								}
+							},
+							"responses": {
+								"200": {
+									"description": "Okay"
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

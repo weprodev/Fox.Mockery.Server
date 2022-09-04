@@ -1,0 +1,19 @@
+{
+	"name": "X-RESPONSE-TYPE",
+	"in": "header",
+	"description": "With this parameter, we can handle the response message, according to our requirement.",
+	"required": false,
+	"style": "simple",
+	"allowEmptyValue": false,
+	"schema": {
+		"type": "string",
+		"enum": [
+			"EXAMPLE",
+			"EXAMPLE_AND_OVERWRITE",
+			"SCHEMA",
+			"BODY",
+			"ALL"
+		],
+		"default": "ALL"
+	}
+}

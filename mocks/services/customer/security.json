@@ -1,0 +1,8 @@
+[
+	{
+		"BasicAuth": []
+	},
+	{
+		"JwtAuthToken": []
+	}
+]

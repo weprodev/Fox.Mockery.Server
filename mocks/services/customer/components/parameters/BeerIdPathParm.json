@@ -1,0 +1,12 @@
+{
+	"name": "beerId",
+	"in": "path",
+	"description": "Beer Id",
+	"required": true,
+	"style": "simple",
+	"explode": false,
+	"schema": {
+		"type": "string",
+		"format": "uuid"
+	}
+}

@@ -1,0 +1,37 @@
+{
+	"type": "object",
+	"properties": {
+		"pageable": {
+			"$ref": "#/components/schemas/PagedResponse_pageable"
+		},
+		"totalPages": {
+			"type": "integer",
+			"format": "int32"
+		},
+		"last": {
+			"type": "boolean"
+		},
+		"totalElements": {
+			"type": "integer",
+			"format": "int32"
+		},
+		"size": {
+			"type": "integer",
+			"format": "int32"
+		},
+		"number": {
+			"type": "integer",
+			"format": "int32"
+		},
+		"numberOfElements": {
+			"type": "integer",
+			"format": "int32"
+		},
+		"sort": {
+			"$ref": "#/components/schemas/PagedResponse_pageable_sort"
+		},
+		"first": {
+			"type": "boolean"
+		}
+	}
+}

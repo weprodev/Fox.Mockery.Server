@@ -1,0 +1,12 @@
+{
+	"name": "customerId",
+	"in": "path",
+	"description": "Customer Id",
+	"required": true,
+	"style": "simple",
+	"explode": false,
+	"schema": {
+		"type": "string",
+		"format": "uuid"
+	}
+}

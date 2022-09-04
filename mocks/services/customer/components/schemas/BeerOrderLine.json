@@ -1,0 +1,38 @@
+{
+	"type": "object",
+	"required": [
+		"orderQuantity",
+		"upc"
+	],
+	"properties": {
+		"id": {
+			"type": "string",
+			"format": "uuid",
+			"nullable": true,
+			"readOnly": true
+		},
+		"beerId": {
+			"type": "string",
+			"format": "uuid",
+			"readOnly": true
+		},
+		"upc": {
+			"type": "string"
+		},
+		"orderQuantity": {
+			"type": "integer",
+			"minimum": 1,
+			"maximum": 999
+		},
+		"quantityAllocated": {
+			"type": "integer",
+			"nullable": true,
+			"readOnly": true
+		}
+	}
+}
+
+
+
+
+

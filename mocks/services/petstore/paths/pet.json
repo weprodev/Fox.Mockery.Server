@@ -1,0 +1,191 @@
+{
+	"/pets": {
+		"get": {
+			"summary": "List all pets",
+			"operationId": "listPets",
+			"tags": [
+				"pet"
+			],
+			"parameters": [
+				{
+					"name": "limit",
+					"in": "query",
+					"description": "How many items to return at one time (max 100)",
+					"required": false,
+					"schema": {
+						"type": "integer",
+						"format": "int32"
+					}
+				},
+				{
+					"$ref": "#/components/parameters/ResponseType"
+				},
+				{
+					"$ref": "#/components/parameters/EnvelopeResponse"
+				},
+				{
+					"$ref": "#/components/parameters/StatusCode"
+				}
+			],
+			"responses": {
+				"200": {
+					"description": "A paged array of pets",
+					"headers": {
+						"x-next": {
+							"description": "A link to the next page of responses",
+							"schema": {
+								"type": "string"
+							}
+						}
+					},
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/Pets"
+							},
+							"example": [
+								{
+									"id": 1,
+									"name": "Fay",
+									"tag": "lovely"
+								},
+								{
+									"id": 1,
+									"name": "Lucy",
+									"tag": "Persian"
+								}
+							]
+						}
+					}
+				},
+				"default": {
+					"description": "unexpected error",
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/Error"
+							}
+						}
+					}
+				}
+			}
+		},
+		"post": {
+			"summary": "Create a pet",
+			"operationId": "createPets",
+			"tags": [
+				"pet"
+			],
+			"parameters": [
+				{
+					"$ref": "#/components/parameters/ResponseType"
+				},
+				{
+					"$ref": "#/components/parameters/EnvelopeResponse"
+				},
+				{
+					"$ref": "#/components/parameters/StatusCode"
+				},
+				{
+					"$ref": "#/components/parameters/JsonContentType"
+				}
+			],
+			"requestBody": {
+				"description": "Create a pet record",
+				"required": true,
+				"content": {
+					"application/json": {
+						"schema": {
+							"$ref": "#/components/schemas/PetRequest"
+						}
+					}
+				}
+			},
+			"responses": {
+				"201": {
+					"description": "Null response"
+				},
+				"200": {
+					"description": "Null response",
+					"content": {
+						"application/json": {
+							"examples": [
+								{
+									"id": 1,
+									"name": "Fay",
+									"tag": "lovely"
+								},
+								{
+									"id": 2,
+									"name": "Buddy",
+									"tag": "Golden"
+								}
+							]
+						}
+					}
+				},
+				"default": {
+					"description": "unexpected error",
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/Error"
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"/pets/{petId}": {
+		"get": {
+			"summary": "Info for a specific pet",
+			"operationId": "showPetById",
+			"tags": [
+				"pet"
+			],
+			"parameters": [
+				{
+					"name": "petId",
+					"in": "path",
+					"required": true,
+					"description": "The id of the pet to retrieve",
+					"schema": {
+						"type": "string"
+					}
+				},
+				{
+					"$ref": "#/components/parameters/ResponseType"
+				},
+				{
+					"$ref": "#/components/parameters/EnvelopeResponse"
+				},
+				{
+					"$ref": "#/components/parameters/StatusCode"
+				}
+			],
+			"responses": {
+				"200": {
+					"description": "Expected response to a valid request",
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/Pet"
+							}
+						}
+					}
+				},
+				"default": {
+					"description": "unexpected error",
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/Error"
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

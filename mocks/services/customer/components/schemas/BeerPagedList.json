@@ -1,0 +1,13 @@
+{
+	"type": "object",
+	"properties": {
+		"content": {
+			"$ref": "#/components/schemas/BeerList"
+		}
+	},
+	"allOf": [
+		{
+			"$ref": "#/components/schemas/PagedResponse"
+		}
+	]
+}

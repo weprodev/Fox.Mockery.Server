@@ -1,0 +1,260 @@
+{
+	"/v1/customers": {
+		"get": {
+			"summary": "List Customers",
+			"description": "Get a list of customers in the system",
+			"operationId": "listCustomersV1",
+			"tags": [
+				"Customers"
+			],
+			"parameters": [
+				{
+					"name": "pageNumber",
+					"in": "query",
+					"description": "Page Number",
+					"required": false,
+					"style": "form",
+					"explode": true,
+					"schema": {
+						"type": "integer",
+						"format": "int32",
+						"default": 1
+					}
+				},
+				{
+					"name": "pageSize",
+					"in": "query",
+					"description": "Page Size",
+					"required": false,
+					"style": "form",
+					"explode": true,
+					"schema": {
+						"type": "integer",
+						"format": "int32",
+						"default": 25
+					}
+				}
+			],
+			"responses": {
+				"200": {
+					"description": "List of Customers",
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/CustomerPagedList"
+							},
+							"example": {}
+						}
+					}
+				}
+			},
+			"security": []
+		},
+		"post": {
+			"summary": "New Customer",
+			"description": "Create a new customer",
+			"tags": [
+				"Customers"
+			],
+			"requestBody": {
+				"required": true,
+				"content": {
+					"application/json": {
+						"schema": {
+							"$ref": "#/components/schemas/Customer"
+						}
+					}
+				}
+			},
+			"responses": {
+				"201": {
+					"description": "Customer Created",
+					"headers": {
+						"Location": {
+							"description": "Location of the created customer",
+							"style": "simple",
+							"explode": false,
+							"schema": {
+								"type": "string",
+								"format": "uri",
+								"example": "http://example.com/v1/customers/assignedIdValue"
+							}
+						}
+					}
+				},
+				"200": {
+					"description": "",
+					"content": {
+						"application/json": {
+							"examples": [
+								{
+									"id": 1,
+									"name": "",
+									"tag": ""
+								}
+							]
+						}
+					}
+				},
+				"400": {
+					"description": "Bad Request"
+				},
+				"409": {
+					"description": "description: Conflict"
+				}
+			}
+		}
+	},
+	"/v1/customers/{customerId}": {
+		"get": {
+			"summary": "Get Customer By ID",
+			"description": "Get a single **Customer** by its Id value.",
+			"operationId": "getCustomerByIdV1",
+			"tags": [
+				"Customers"
+			],
+			"parameters": [
+				{
+					"name": "customerId",
+					"in": "path",
+					"description": "Customer Id",
+					"required": true,
+					"style": "simple",
+					"explode": false,
+					"schema": {
+						"type": "string",
+						"format": "uuid"
+					}
+				},
+				{
+					"$ref": "#/components/parameters/ResponseType"
+				},
+				{
+					"$ref": "#/components/parameters/EnvelopeResponse"
+				},
+				{
+					"$ref": "#/components/parameters/StatusCode"
+				},
+				{
+					"$ref": "#/components/parameters/JsonContentType"
+				}
+			],
+			"responses": {
+				"200": {
+					"description": "Found Customer",
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/Customer"
+							}
+						}
+					}
+				},
+				"404": {
+					"description": "Not found"
+				}
+			},
+			"security": []
+		},
+		"put": {
+			"summary": "Update Customer",
+			"description": "Update customer by id.",
+			"parameters": [
+				{
+					"name": "customerId",
+					"in": "path",
+					"description": "Customer Id",
+					"required": true,
+					"style": "simple",
+					"explode": false,
+					"schema": {
+						"type": "string",
+						"format": "uuid"
+					}
+				},
+				{
+					"$ref": "#/components/parameters/ResponseType"
+				},
+				{
+					"$ref": "#/components/parameters/EnvelopeResponse"
+				},
+				{
+					"$ref": "#/components/parameters/StatusCode"
+				},
+				{
+					"$ref": "#/components/parameters/JsonContentType"
+				}
+			],
+			"tags": [
+				"Customers"
+			],
+			"requestBody": {
+				"required": true,
+				"content": {
+					"application/json": {
+						"schema": {
+							"$ref": "#/components/schemas/Customer"
+						}
+					}
+				}
+			},
+			"responses": {
+				"204": {
+					"description": "Customer Updated"
+				},
+				"400": {
+					"description": "Bad Request"
+				},
+				"409": {
+					"description": "Conflict"
+				}
+			}
+		},
+		"delete": {
+			"tags": [
+				"Customers"
+			],
+			"summary": "Delete Customer By ID",
+			"description": "Delete a customer by its Id value.",
+			"operationId": "deleteCustomerV1",
+			"parameters": [
+				{
+					"name": "customerId",
+					"in": "path",
+					"description": "Customer Id",
+					"required": true,
+					"style": "simple",
+					"explode": false,
+					"schema": {
+						"type": "string",
+						"format": "uuid"
+					}
+				},
+				{
+					"$ref": "#/components/parameters/ResponseType"
+				},
+				{
+					"$ref": "#/components/parameters/EnvelopeResponse"
+				},
+				{
+					"$ref": "#/components/parameters/StatusCode"
+				},
+				{
+					"$ref": "#/components/parameters/JsonContentType"
+				}
+			],
+			"responses": {
+				"200": {
+					"description": "Customer Delete"
+				},
+				"404": {
+					"description": "Not found"
+				}
+			}
+		}
+	}
+}
+
+
+
+

@@ -1,0 +1,17 @@
+{
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "name"
+    ],
+    "properties": {
+        "name": {
+            "type": "string",
+            "example": "Lucy"
+        },
+        "tag": {
+            "type": "string",
+            "example": "Persian"
+        }
+    }
+}

@@ -1,0 +1,35 @@
+{
+	"type": "object",
+	"description": "Beer Object",
+	"properties": {
+		"id": {
+			"type": "string",
+			"format": "uuid",
+			"readOnly": true
+		},
+		"beerName": {
+			"type": "string"
+		},
+		"style": {
+			"type": "string",
+			"enum": [
+				"ALE",
+				"PALE_ALE",
+				"IPA",
+				"WHEAT",
+				"LAGER"
+			]
+		},
+		"price": {
+			"type": "number",
+			"format": "float"
+		},
+		"quantityOnHand": {
+			"type": "integer",
+			"format": "int32"
+		},
+		"brewery": {
+			"$ref": "#/components/schemas/Brewery"
+		}
+	}
+}

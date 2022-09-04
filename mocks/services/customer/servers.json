@@ -1,0 +1,14 @@
+[
+	{
+		"url": "https://dev.example.com",
+		"description": "Development Server"
+	},
+	{
+		"url": "https://qa.example.com",
+		"description": "QA Server"
+	},
+	{
+		"url": "https://prod.example.com",
+		"description": "Production Server"
+	}
+]

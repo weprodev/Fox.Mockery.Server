@@ -1,0 +1,25 @@
+{
+	"type": "object",
+	"properties": {
+		"id": {
+			"type": "string",
+			"format": "uuid",
+			"readOnly": true
+		},
+		"firstName": {
+			"type": "string",
+			"maxLength": 100,
+			"minLength": 2,
+			"example": "John"
+		},
+		"lastName": {
+			"type": "string",
+			"maxLength": 100,
+			"minLength": 2,
+			"example": "Thompson"
+		},
+		"address": {
+			"$ref": "#/components/schemas/Address"
+		}
+	}
+}
