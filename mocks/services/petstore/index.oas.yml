@@ -13,7 +13,8 @@ info:
         url: 'https://www.apache.org/licenses/LICENSE-2.0.html'
 servers:
     -
-        url: 'http://localhost:8085'
+        url: 'http://localhost:8030'
+        description: 'Fox Mockery'
 paths:
     /petstore/pets:
         get:

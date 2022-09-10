@@ -1,5 +1,9 @@
 [
 	{
+        "url": "http://localhost:8030",
+        "description": "Fox Mockery"
+    },
+	{
 		"url": "https://dev.example.com",
 		"description": "Development Server"
 	},
