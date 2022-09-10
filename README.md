@@ -11,6 +11,12 @@
 - E2E Testing
 - Generate Open API Specification
 
+### Articles
+
+- [Software Development With Fox Mockery](https://weprodev.com/software-development-with-fox-mockery/)
+
+<br>
+
 # Install on your local
 
 follow below steps to run a Mock Server on your local.
